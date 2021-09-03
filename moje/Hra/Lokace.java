@@ -4,30 +4,15 @@ public class Lokace {
     String název;
     String popis;
 
-    Lokace jih;
-    Lokace vychod;
-    Lokace zapad;
-    Lokace sever;
+    Lokace strany[] = new Lokace[4];
 
     public Lokace(String název, String popis) {
         this.název = název;
         this.popis = popis;
     }
 
-    public void setJih(Lokace jih) {
-        this.jih = jih;
-    }
-
-    public void setVychod(Lokace vychod) {
-        this.vychod = vychod;
-    }
-
-    public void setZapad(Lokace zapad) {
-        this.zapad = zapad;
-    }
-
-    public void setSever(Lokace sever) {
-        this.sever = sever;
+    public void nastavStrany(Lokace moznosti, int pozice){
+        strany[pozice] = moznosti;
     }
 
     public String getNázev() {
@@ -36,5 +21,9 @@ public class Lokace {
 
     public String getPopis() {
         return popis;
+    }
+
+    public Lokace[] getStrany() {
+        return strany;
     }
 }

@@ -2,7 +2,7 @@ package Hra;
 
 public class Hra {
 
-        Lokace prochazeni;
+        Lokace aktualniMisto;
 
         Lokace hrad = new Lokace("Hrad",
                 "Stojíš před okovanou branou gotického hradu, která je zřejmě jediným vchodem do pevnosti.\n" +
@@ -27,24 +27,29 @@ public class Hra {
 
 
     public Hra() {
-        this.prochazeni = dum;
+        this.aktualniMisto = dum;
         init();
     }
     public void init(){
-        hrad.setVychod(lesHrad);
-        lesHrad.setZapad(hrad);
-        lesHrad.setVychod(lesniRozcesti);
-        lesniRozcesti.setVychod(lesRybník);
-        lesniRozcesti.setJih(lesDum);
-        lesniRozcesti.setZapad(lesHrad);
-        lesRybník.setZapad(rybník);
-        lesRybník.setVychod(lesniRozcesti);
-        lesDum.setZapad(dum);
-        lesDum.setSever(lesniRozcesti);
-        dum.setZapad(lesDum);
+        hrad.nastavStrany(lesHrad,1);
+        lesHrad.nastavStrany(lesniRozcesti,1);
+        lesHrad.nastavStrany(hrad,3);
+        lesniRozcesti.nastavStrany(lesRybník,1);
+        lesniRozcesti.nastavStrany(lesDum,2);
+        lesniRozcesti.nastavStrany(lesHrad,3);
+        lesRybník.nastavStrany(rybník,1);
+        lesRybník.nastavStrany(lesniRozcesti,3);
+        rybník.nastavStrany(lesRybník,3);
+        lesDum.nastavStrany(lesniRozcesti,0);
+        lesDum.nastavStrany(dum,1);
+        dum.nastavStrany(lesDum,3);
     }
 
-    public Lokace getProchazeni() {
-        return prochazeni;
+    public Lokace getAktualniMisto() {
+        return aktualniMisto;
+    }
+
+    public void setAktualniMisto(Lokace aktualniMisto) {
+        this.aktualniMisto = aktualniMisto;
     }
 }
